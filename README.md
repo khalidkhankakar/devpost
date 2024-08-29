@@ -26,7 +26,7 @@ Welcome to the **Dev community Clone**! This project is a fully-featured clone o
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/devpost-clone.git
+   https://github.com/khalidkhankakar/devpost.git
     ```
 2. Install dependencies:
     ```bash
