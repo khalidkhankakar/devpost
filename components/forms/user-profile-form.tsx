@@ -1,6 +1,5 @@
 "use client";
-import { Editor } from "@tinymce/tinymce-react";
-import { useTransition, useRef } from "react";
+import { useTransition } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -8,20 +7,18 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createPostDB } from "@/lib/actions/post.actions";
-import {  userProfileSchema } from "@/types";
 import { useToast } from "../ui/use-toast";
 import ImageUploader from "./image-uploader";
 import { useRouter } from "next/navigation";
 import { Textarea } from "../ui/textarea";
 import { useAuth } from "@clerk/nextjs";
+import { userProfileSchema } from "@/types";
 import { updateUserProfile } from "@/lib/actions/user.action";
 
 const UserProfileForm = ({
