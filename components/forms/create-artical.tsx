@@ -172,9 +172,9 @@ const CreateArtical = ({
             control={form.control}
             name="articalDetails"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex w-full flex-col gap-3">
                 <FormLabel>Details</FormLabel>
-                <FormControl>
+                <FormControl className="mt-3.5">
                   <Editor
                     apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
                     onInit={(evt, editor) => {

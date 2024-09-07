@@ -71,7 +71,7 @@ export default async function ArticalExplanation({
           </h1>
         </div>
 
-        <ParsedHTML data={JSON.stringify(parsePost.articalDetails)} />
+        <ParsedHTML data={parsePost.articalDetails} />
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
