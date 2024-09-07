@@ -1,8 +1,9 @@
 import {  getUserByClerkId } from "@/lib/actions/user.action";
-import PostTab from "@/components/shared/post-tab";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import PostCard from "@/components/card/post-card";
+import { redirect } from "next/navigation";
 
 export default async function page({
   params,
@@ -10,14 +11,17 @@ export default async function page({
   params: { id: string };
 }) {
   const mongoUser = await getUserByClerkId(params.id);
-  
+  if(!mongoUser){
+    return redirect('/')
+  }
+  console.log(mongoUser)
   return (
     <div className="flex flex-col gap-8 w-full max-w-5xl mx-auto px-4 md:px-6 py-12">
       <div className="grid gap-6 md:grid-cols-[200px_1fr] items-start">
         <div className="flex flex-col gap-4">
           <div className="relative h-[200px] w-[200px] rounded-full overflow-hidden">
             <Image
-              src={"/icons/home.svg"}
+              src={mongoUser.profileUrl}
               alt="Profile Picture"
               width={200}
               height={200}
@@ -76,7 +80,20 @@ export default async function page({
       <div className="grid gap-8">
         <div>
           <h2 className="text-2xl font-bold mb-4">Posts</h2>
-          <PostTab userId={String(mongoUser._id)} />
+          {/* <PostTab userId={String(mongoUser._id)} /> */}
+          {
+            mongoUser?.userArtical?.length <= 0 ?
+            (
+              <div>
+              <p>You have no liked Artical yet.</p>
+              <Link href={"/"}>Like Post</Link>
+            </div>
+            ):(
+              mongoUser?.userArtical?.map((post:any)=>(
+                <PostCard post={JSON.stringify(post)} mongoCurrentUser={JSON.stringify(mongoUser)} key={post._id} />
+              ))
+            )
+          }
         </div>
 
         <div>

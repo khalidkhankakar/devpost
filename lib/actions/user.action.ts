@@ -75,7 +75,10 @@ export const getUserByClerkId = async (clerkId: string) => {
       { path: "createdBy", model: User }, // Populate the 'createdBy' field with User data
       { path: "tags", model: Tag }, // Populate the 'tags' field with Tag data
     ],
-  });
+  }).populate({path:'userArtical',model:Post, populate: [
+    { path: "createdBy", model: User }, // Populate the 'createdBy' field with User data
+    { path: "tags", model: Tag }, // Populate the 'tags' field with Tag data
+  ]});
   return mongoUser;
 };
 

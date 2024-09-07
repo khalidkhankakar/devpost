@@ -35,7 +35,7 @@ interface Props {
 const ParsedHTML = ({ data }: Props) => {
   useEffect(() => {
     Prism.highlightAll();
-  }, [])
+  }, [data])
 
   return (
     <div className={'w-full min-w-full'}>
