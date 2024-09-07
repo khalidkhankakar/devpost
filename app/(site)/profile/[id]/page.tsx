@@ -80,7 +80,6 @@ export default async function page({
       <div className="grid gap-8">
         <div>
           <h2 className="text-2xl font-bold mb-4">Posts</h2>
-          {/* <PostTab userId={String(mongoUser._id)} /> */}
           {
             mongoUser?.userArtical?.length <= 0 ?
             (
