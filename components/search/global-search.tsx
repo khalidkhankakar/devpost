@@ -16,12 +16,13 @@ const GlobalSearch = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
 
-  const devSearchRef = useRef(null);
+  const devSearchRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleOutsideClick = (event: any) => {
       if (
         devSearchRef.current &&
-        !devSearchRef.current.contains(event.target)
+        event.target instanceof Node && // Ensure event.target is a DOM node
+        !devSearchRef.current?.contains(event.target)
       ) {
         setIsOpen(false);
         setSearchTerm("");
