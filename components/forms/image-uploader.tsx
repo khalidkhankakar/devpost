@@ -17,7 +17,7 @@ const ImageUploader = ({ fieldChange, mediaUrl }:{fieldChange:any; mediaUrl?:str
       fieldChange(acceptedFiles);
       setFileUrl(convertFileToUrl(acceptedFiles[0]));
     },
-    [file, fieldChange]
+    [fieldChange] // Remove 'file' from dependency array
   );
 
   const { getRootProps, getInputProps } = useDropzone({

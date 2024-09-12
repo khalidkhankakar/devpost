@@ -97,7 +97,7 @@ export const getUserSavedArticals = async (arr: string[]) => {
     await connectToDB();
     const savedAritical = await Post.find({
       _id: { $in: arr.map((id) => new ObjectId(id)) },
-    }).toArray();
+    });
     return savedAritical;
   } catch (error: any) {
     throw Error(error);
@@ -118,7 +118,13 @@ export const updateUserProfile = async (formData: FormData) => {
   }
 
   try {
-    const userProfile = {
+    const userProfile: {
+      name: string;
+      location: string | null;
+      portfolioLink: string | null;
+      bio: string | null;
+      coverImg?: string; // Add the optional coverImg property
+    } = {
       name: data.name,
       location: data.location,
       portfolioLink: data.portfolioLink,
@@ -129,9 +135,10 @@ export const updateUserProfile = async (formData: FormData) => {
       const response = await utapi.uploadFiles(data.coverImg[0]);
 
       if (response?.data?.url) {
-        userProfile.coverImg = response.data.url;
+        userProfile.coverImg = response.data.url; // No more TypeScript error
       }
     }
+
     await connectToDB();
     const updatedUser = await User.findByIdAndUpdate(
       formData.get("userId"),
@@ -146,6 +153,7 @@ export const updateUserProfile = async (formData: FormData) => {
     return { error: "Post creation failed", details: err };
   }
 };
+
 
 export const saveUserPost = async (userId: string, postId: string) => {
   try {

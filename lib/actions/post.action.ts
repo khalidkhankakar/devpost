@@ -276,7 +276,7 @@ export const getPostsByArr = async (postArr: string[]) => {
 export const addAndRemoveReaction = async (
   postId: string,
   userId: string,
-  isLiked: boolean,
+  isLiked: boolean | undefined,
   path: string
 ) => {
   try {
